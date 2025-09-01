@@ -20,8 +20,10 @@ export default async function handler(req, res) {
   const cipher = Buffer.from(cipherHex, "hex");
 
   // Decrypt AES-CBC — raw error if it fails
-  const decipher = crypto.createDecipheriv("aes-128-cbc", key, iv);
-  const decrypted = Buffer.concat([decipher.update(cipher), decipher.final()]);
+ const decipher = crypto.createDecipheriv("aes-128-cbc", key, iv);
+decipher.setAutoPadding(false); 
+const decrypted = Buffer.concat([decipher.update(cipher), decipher.final()]);
+
   const cookie = decrypted.toString("hex");
   console.log("Decrypted cookie:", cookie);
 
