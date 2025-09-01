@@ -1,4 +1,4 @@
-import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer";
 
 export default async function handler(req, res) {
   const targetUrl = req.query.url;
@@ -8,15 +8,19 @@ export default async function handler(req, res) {
     return;
   }
 
-  let browser = null;
+  let browser;
   try {
-    // Launch headless Chromium from chrome-aws-lambda
-    browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true
+    // Launch Puppeteer with default bundled Chromium
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu",
+        "--no-zygote",
+        "--single-process"
+      ]
     });
 
     const page = await browser.newPage();
@@ -41,7 +45,7 @@ export default async function handler(req, res) {
     console.error("Puppeteer error:", err);
     res.status(500).send("Proxy error: " + err.message);
   } finally {
-    if (browser !== null) {
+    if (browser) {
       await browser.close();
     }
   }
