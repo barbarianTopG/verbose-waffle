@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer-core";
 
 export default async function handler(req, res) {
   const targetUrl = req.query.url;
@@ -10,26 +11,19 @@ export default async function handler(req, res) {
 
   let browser;
   try {
-    // Launch Puppeteer with default bundled Chromium
+    // Launch Puppeteer with @sparticuz/chromium
     browser = await puppeteer.launch({
-      headless: true,
-      executablePath: await puppeteer.executablePath(),
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-        "--disable-gpu",
-        "--no-zygote",
-        "--single-process"
-      ]
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true
     });
 
     const page = await browser.newPage();
 
     // Optional: set a real browser User-Agent
-    await page.setUserAgent(
-      "Roblox/WinInet"
-    );
+    await page.setUserAgent("Roblox/WinInet");
 
     // Navigate to the page
     await page.goto(targetUrl, { waitUntil: "networkidle2" });
