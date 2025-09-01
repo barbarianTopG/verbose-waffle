@@ -2,13 +2,15 @@
   "name": "infinityfree-proxy-puppeteer",
   "version": "1.0.0",
   "description": "Proxy for InfiniteFree pages using Puppeteer + chrome-aws-lambda",
-  "main": "index.js",
   "scripts": {
     "start": "vercel dev"
   },
   "dependencies": {
     "chrome-aws-lambda": "^20.0.0",
     "puppeteer-core": "^20.0.0"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "type": "module"
 }
