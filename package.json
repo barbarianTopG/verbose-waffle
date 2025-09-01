@@ -1,7 +1,7 @@
 {
   "name": "infinityfree-proxy-puppeteer",
   "version": "1.0.0",
-  "description": "Proxy for InfiniteFree pages using Puppeteer + chrome-aws-lambda",
+  "description": "Proxy for InfiniteFree pages using Puppeteer",
   "scripts": {
     "start": "vercel dev"
   },
