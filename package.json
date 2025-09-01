@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Proxy for InfiniteFree pages using Puppeteer",
   "scripts": {
-    "start": "vercel dev"
+    "start": "vercel dev",
+    "postinstall": "puppeteer browsers install chrome"
   },
   "dependencies": {
-    "puppeteer": "^24.17.0"
+    "puppeteer": "^24.17.1"
   },
   "engines": {
     "node": "20.x"
