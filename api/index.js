@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     // Optional: set a real browser User-Agent
     await page.setUserAgent(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+      "Roblox/WinInet"
     );
 
     // Navigate to the page
