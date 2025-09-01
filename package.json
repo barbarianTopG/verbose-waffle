@@ -6,7 +6,6 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "chrome-aws-lambda": "10.1.0",
     "puppeteer-core": "^24.17.0"
   },
   "engines": {
