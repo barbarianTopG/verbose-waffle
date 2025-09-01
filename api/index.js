@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     // Launch Puppeteer with default bundled Chromium
     browser = await puppeteer.launch({
       headless: true,
+      executablePath: puppeteer.executablePath(),
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
