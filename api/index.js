@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     // Launch Puppeteer with default bundled Chromium
     browser = await puppeteer.launch({
       headless: true,
-      executablePath: puppeteer.executablePath(),
+      executablePath: await puppeteer.executablePath(),
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     await page.goto(targetUrl, { waitUntil: "networkidle2" });
 
     // Wait a short time for InfiniteFree JS to execute (AES + cookie)
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(3000);
 
     // Get page content
     const content = await page.content();
